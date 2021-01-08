@@ -1,9 +1,4 @@
-/config/
-/controller/
 /dao/
 /daoImpl/
-/entry/
-/excDao/
-/model/
-/test/
+/controller/
 /view/

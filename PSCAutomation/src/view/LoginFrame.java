@@ -4,14 +4,18 @@ import java.awt.Container;
 import java.awt.event.*;
 import javax.swing.*;
 
+import controller.EmployeeController;
+import model.Employee;
+
 public class LoginFrame extends JFrame{
 	
 	Container container;
-	JLabel lUserId, lPassword;
+	JLabel lUserId, lPassword, lMessage;
 	JTextField tUserId;
 	JPasswordField tPassword;
 	JButton bLogin, bRegister;
 	JCheckBox cShowPassword;
+	EmployeeController empController=null;
 	
 	public LoginFrame() {
 		container=getContentPane();
@@ -19,7 +23,42 @@ public class LoginFrame extends JFrame{
 		lPassword=new JLabel("PASSWORD");
 		tUserId=new JTextField();
 		tPassword=new JPasswordField();
+		lMessage=new JLabel();
+		empController=new EmployeeController();
 		bLogin=new JButton("LOGIN");
+		
+		bLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String userId, password;
+				userId=tUserId.getText();
+				password=new String(tPassword.getPassword());
+				Employee emp=new Employee();
+				emp=empController.checkLogin(userId, password);
+				if(emp==null) {
+					lMessage.setText("You are not authorised user! Retry or Register!");
+				}
+				else {
+					if(emp.getActive().equals("Active")) {
+						if(emp.getRole().equals("HRA")) {
+							callDispose();
+							new HraHomeFrame();
+						}
+						else if(emp.getRole().equals("PME")) {
+							callDispose();
+							new PmeHomeFrame();
+						}
+						else {
+							callDispose();
+							new EmpHomeFrame();
+						}
+					}
+				}
+			}
+			
+		});
+		
 		bRegister=new JButton("REGISTER");
 		
 		bRegister.addActionListener(new ActionListener() {
@@ -53,6 +92,7 @@ public class LoginFrame extends JFrame{
 		tUserId.setBounds(250,150,150,30);
 		tPassword.setBounds(250,250,150,30);
 		cShowPassword.setBounds(250,300,150,30);
+		lMessage.setBounds(100, 350, 250, 30);
 		bLogin.setBounds(100,400,100,30);
 		bRegister.setBounds(200,400,100,30);
 	}
@@ -65,6 +105,7 @@ public class LoginFrame extends JFrame{
 		container.add(cShowPassword);
 		container.add(bLogin);
 		container.add(bRegister);
+		container.add(lMessage);
 	}
 	
 	public void callDispose() {
