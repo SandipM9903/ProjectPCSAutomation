@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import config.JDBCConnection;
-import excDao.SkillExec;
+import excDao.JobExec;
 
-public class TestAppSkill {
+public class TestAppJob {
 
 	public void testConnection() {
 	
@@ -24,44 +24,44 @@ public class TestAppSkill {
 		
 	}
 	public void processMenu() {
-		SkillExec obj=new SkillExec();
+		JobExec obj=new JobExec();
 		Scanner sc=new Scanner(System.in);
 		int option=0;
 		char ch='y';
 		do {
 			System.out.println("----------CRUD Operation-----------");
-			System.out.println("1. View all Skills");
-			System.out.println("2. View single Skill");
-			System.out.println("3. Add Skill");
-			System.out.println("4. Update Skill");
-			System.out.println("5. Delete Skill");
-			System.out.println("6. Deactivate Skill");
-			System.out.println("7. Activate Skill");
+			System.out.println("1. View all Jobs");
+			System.out.println("2. View single Job");
+			System.out.println("3. Add Job");
+			System.out.println("4. Update Job");
+			System.out.println("5. Delete Job");
+			System.out.println("6. Deactivate Job");
+			System.out.println("7. Activate Job");
 			System.out.println("8. Quit");
 			System.out.println("___________________");
 			System.out.println("Enter your choice:");
 			option=sc.nextInt();
 			switch(option) {
 				case 1:
-					obj.getAllSkills();
+					obj.getAllJobs();
 					break;
 				case 2:
-					obj.getSkillById();
+					obj.getJobById();
 					break;
 				case 3:
-					obj.addSkill();
+					obj.addJob();
 					break;
 				case 4:
-					obj.updateSkill();
+					obj.updateJob();
 					break;
 				case 5:
-					obj.deleteSkill();
+					obj.deleteJob();
 					break;
 				case 6:
-					obj.deactiveSkill();
+					obj.deactiveJob();
 					break;
 				case 7:
-					obj.activeSkill();
+					obj.activeJob();
 					break;
 				case 8:
 					System.exit(0);
@@ -76,7 +76,7 @@ public class TestAppSkill {
 		
 	}
 	public static void main(String[] args) {
-		TestAppSkill test=new TestAppSkill();
+		TestAppJob test=new TestAppJob();
 		//test.testConnection();
 		test.processMenu();
 		

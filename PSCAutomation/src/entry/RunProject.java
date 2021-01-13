@@ -1,6 +1,7 @@
 package entry;
 
 import view.LoginFrame;
+import view.RegisterFrame;
 
 public class RunProject {
 

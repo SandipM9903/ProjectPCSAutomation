@@ -13,15 +13,15 @@ ISkillDao skDao=null;
 		skDao=new SkillDaoImpl();
 	}
 	
-	public List<Skill> getAllEmployees(){
-		List<Skill> empList=skDao.getAllSkills();
-		return empList;
+	public List<Skill> getAllSkills(){
+		List<Skill> skList=skDao.getAllSkills();
+		return skList;
 	}
 	
-	public void addEmployee(Skill sk) {
+	public void addSkill(Skill sk) {
 		skDao.addSkill(sk);
 	}
-	public Skill getEmployeeById(int id) {
+	public Skill getSkillById(int id) {
 		Skill sk=skDao.getSkillById(id);
 		return sk;
 	}
